@@ -78,29 +78,4 @@ async def execute_command(command: CommandBase):
     except CommandError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-# Add endpoints for user/group management
-@app.post("/users/{username}/groups/{group_name}")
-async def add_user_to_group(username: str, group_name: str):
-    """Add a user to a group"""
-    try:
-        user_groups.add_user_to_group(username, group_name)
-        return {"message": f"Added user '{username}' to group '{group_name}'"}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-@app.delete("/users/{username}/groups/{group_name}")
-async def remove_user_from_group(username: str, group_name: str):
-    """Remove a user from a group"""
-    try:
-        user_groups.remove_user_from_group(username, group_name)
-        return {"message": f"Removed user '{username}' from group '{group_name}'"}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-@app.get("/users/{username}/groups")
-async def get_user_groups(username: str):
-    """Get all groups a user belongs to"""
-    groups = user_groups.get_user_groups(username)
-    return {"username": username, "groups": list(groups)} 
+        raise HTTPException(status_code=500, detail=str(e)) 

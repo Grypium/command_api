@@ -93,26 +93,36 @@ The executable will be created in the `dist` directory.
 
 ## User and Group Management
 
-The system uses a flexible user/group-based authorization system.
+The system uses a YAML-based configuration for user groups and permissions. Groups and their members are defined in `config/groups.yaml`:
 
-### Default Groups
+```yaml
+# Default groups and their members
+groups:
+  admin:
+    - admin
+    - root
+    - system
+  
+  system:
+    - system
+    - admin
+  
+  users:
+    - john
+    - jane
+    - admin
+    - system
 
-- `admin`: Administrative access
-- `system`: System-level operations
-- `users`: Basic user access
-
-### Managing Users and Groups
-
-```bash
-# Add user to group
-curl -X POST http://localhost:8000/users/john/groups/admin
-
-# Remove user from group
-curl -X DELETE http://localhost:8000/users/john/groups/admin
-
-# Get user's groups
-curl http://localhost:8000/users/john/groups
+# Users who can manage groups (used internally)
+group_admins:
+  - admin
+  - root
+  - system
 ```
+
+To modify group membership:
+1. Edit the `config/groups.yaml` file
+2. Restart the backend server to apply changes
 
 ## Adding New Commands
 
@@ -293,7 +303,3 @@ Errors are displayed in the CLI with:
 2. Create a feature branch
 3. Make your changes
 4. Submit a pull request
-
-## License
-
-[Your License Here] 

@@ -1,0 +1,22 @@
+# Default groups and their members
+groups:
+  admin:
+    - admin
+    - root
+    - system
+  
+  system:
+    - system
+    - admin
+  
+  users:
+    - john
+    - jane
+    - admin
+    - system
+
+# Users who can manage groups (used internally)
+group_admins:
+  - admin
+  - root
+  - system 
