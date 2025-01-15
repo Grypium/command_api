@@ -1,0 +1,14 @@
+# Backend dependencies
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.4.2
+
+# Client dependencies
+typer>=0.9.0
+rich>=13.6.0
+httpx>=0.25.0
+python-multipart>=0.0.6
+asyncssh>=2.14.2
+
+# Build dependencies
+pyinstaller>=6.1.0 
